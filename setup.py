@@ -33,7 +33,6 @@ class TestCommand(TestCommand):
 
         import django
         from django.test.utils import get_runner
-        from django.conf import settings
 
         django.setup()
 
