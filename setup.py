@@ -1,16 +1,56 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
+import sys
 
-with open('README.rst', 'r') as f:
-    long_description = f.read()
+from setuptools import setup
+from setuptools.command.test import test as TestCommand
+
+
+class TestCommand(TestCommand):
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        from django.conf import settings
+
+        settings.configure(
+            DATABASES={
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': ':memory:',
+                }
+            },
+            INSTALLED_APPS=(
+                'videofield',
+            ),
+        )
+
+        import django
+        from django.test.utils import get_runner
+        from django.conf import settings
+
+        django.setup()
+
+        TestRunner = get_runner(settings)
+        runner = TestRunner(verbosity=1, interactive=False, failfast=False)
+
+        failures = runner.run_tests([])
+
+        if failures > 0:
+            sys.exit(1)
+
 
 setup(
     name='django-videofield',
     version='0.1.0',
     description='Support for video upload in Django models',
-    long_description=long_description,
+    long_description=open('README.rst', 'r').read(),
     author='André Luiz',
     author_email='contato@xdvl.info',
     url='https://github.com/dvl/django-videofield',
@@ -27,6 +67,8 @@ setup(
         'Topic :: Software Development :: Libraries',
     ],
     keywords='django video model field',
-    packages=find_packages(),
-    test_suite='tests',
+    install_requires=['Django >= 1.8'],
+    tests_require=['Django >= 1.8'],
+    packages=['videofield'],
+    cmdclass={'test': TestCommand}
 )
