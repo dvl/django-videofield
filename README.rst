@@ -1,7 +1,7 @@
 django-videofield
 =================
 
-Support video upload in Django models.
+Support for video upload in Django models.
 
 Instalation
 -----------
