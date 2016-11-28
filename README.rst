@@ -1,3 +1,5 @@
+**THIS PROJECT IS NOT DONE YET AND WILL NOT WORK**
+
 django-videofield
 =================
 
