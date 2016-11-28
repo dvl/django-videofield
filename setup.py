@@ -47,7 +47,7 @@ class TestCommand(TestCommand):
 
 setup(
     name='django-videofield',
-    version='0.1.0',
+    version='0.1.1',
     description='Support for video upload in Django models',
     long_description=open('README.rst', 'r').read(),
     author='André Luiz',
@@ -55,14 +55,16 @@ setup(
     url='https://github.com/dvl/django-videofield',
     license='MIT',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 1 - Planning',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Topic :: Multimedia :: Video',
         'Topic :: Software Development :: Libraries',
     ],
     keywords='django video model field',
